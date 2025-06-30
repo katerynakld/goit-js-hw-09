@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -65,34 +68,35 @@ const images = [
 ];
 
 const galleryBox = document.querySelector('.gallery');
+const elements = [];
 for (const image of images) {
   const galleryItem = document.createElement('li');
   galleryItem.classList.add('gallery-item');
-
+  const galleryLink = document.createElement('a');
+  galleryLink.classList.add('gallery-link');
+  galleryLink.href = image.original;
   const galleryImage = document.createElement('img');
   galleryImage.classList.add('gallery-image');
   galleryImage.src = image.preview;
   galleryImage.alt = image.description;
-  console.dir(galleryImage);
-  galleryImage.setAttribute('data-source', image.original);
 
-  const galleryLink = document.createElement('a');
-  galleryLink.classList.add('gallery-link');
-  galleryLink.href = image.original;
-
-  galleryBox.append(galleryItem);
   galleryItem.append(galleryLink);
   galleryLink.append(galleryImage);
+
+  elements.push(galleryItem);
 }
 
-import SimpleLightbox from 'simplelightbox';
+galleryBox.append(...elements);
 
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function (event) {
-  event.preventDefault();
+let gallery = new SimpleLightbox('.gallery a', {
+  animationSpeed: 300,
+  fadeSpeed: 250,
+  captions: true,
+  captionDelay: 250,
+  captionType: 'attr',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  showCounter: true,
+  scrollZoom: true,
+  loop: true,
 });
-gallery.addEventListener('click', openFullsize);
-
-function openFullsize(event) {
-  event.preventDefault();
-}

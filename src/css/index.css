@@ -1,0 +1,29 @@
+.hero-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.hero-img {
+  height: 400px;
+}
+
+.navigation-item {
+  height: 160px;
+}
+
+.navigation-link {
+  font-size: 30px;
+  border: 2px dotted #678872;
+  border-radius: 10px;
+  padding: 6px 8px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.navigation-link:hover,
+.navigation-link:focus {
+  background-color: #6fa9bb;
+  color: aliceblue;
+}
