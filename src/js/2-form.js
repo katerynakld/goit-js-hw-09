@@ -1,4 +1,4 @@
-const formData = { email: '', message: '' };
+let formData = { email: '', message: '' };
 
 const formEl = document.querySelector('.feedback-form');
 
@@ -12,6 +12,7 @@ const parsedData = savedData ? JSON.parse(savedData) : null;
 // Checking if there's something inside savedData. If not, I will just set it to null
 
 if (parsedData !== null) {
+  formData = parsedData;
   emailInputEl.value = parsedData.email || '';
   messageInputEl.value = parsedData.message || '';
 }
@@ -20,14 +21,17 @@ if (parsedData !== null) {
 function handleInput(event) {
   if (event.target.name === 'email') {
     formData.email = event.target.value.trim();
-    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-  } else if (event.target.name === 'message') {
-    formData.message = event.target.value.trim();
-    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+    console.log(formData);
   }
+  if (event.target.name === 'message') {
+    formData.message = event.target.value.trim();
+    console.log(formData);
+  }
+
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
-//Sumbit handler
+//Submit handler
 function handleSubmit(event) {
   event.preventDefault();
   if (emailInputEl.value === '' || messageInputEl.value === '') {
