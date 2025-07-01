@@ -88,7 +88,7 @@ for (const image of images) {
 
 galleryBox.append(...elements);
 
-let gallery = new SimpleLightbox('.gallery a', {
+const gallery = new SimpleLightbox('.gallery a', {
   animationSpeed: 300,
   fadeSpeed: 250,
   captions: true,

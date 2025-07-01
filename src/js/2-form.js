@@ -21,11 +21,9 @@ if (parsedData !== null) {
 function handleInput(event) {
   if (event.target.name === 'email') {
     formData.email = event.target.value.trim();
-    console.log(formData);
   }
   if (event.target.name === 'message') {
     formData.message = event.target.value.trim();
-    console.log(formData);
   }
 
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
